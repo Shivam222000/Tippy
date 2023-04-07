@@ -21,8 +21,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTipPercentLabel:TextView
     private lateinit var tvTipAmount: TextView
     private lateinit var tvTotalAmount: TextView
+    private lateinit var tvTipGrade:TextView
 
-    fun computeTipAndTotal() {
+    private fun computeTipAndTotal() {
         if(etBaseAmount.text.isEmpty()){
             tvTipAmount.text = ""
             tvTotalAmount.text = ""
@@ -35,6 +36,18 @@ class MainActivity : AppCompatActivity() {
         tvTipAmount.text = "%.2f".format(tip)
         tvTotalAmount.text = "%.2f".format(total)
     }
+    private fun computeTipGrade(progress:Int){
+        var grade = when(progress){
+            in 0..5 -> "Poor"
+            in 6 ..10 -> "Acceptable"
+            in 11 .. 15 -> "Good"
+            in 16 .. 20 -> "Very Good"
+
+            else -> "Excellent"
+        }
+        tvTipGrade.text = grade
+
+    }
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,12 +59,15 @@ class MainActivity : AppCompatActivity() {
         tvTotalAmount = findViewById(R.id.tvTotalAmount)
         seekBarTip.progress = Initial_tip_percent
         tvTipPercentLabel.text = "$Initial_tip_percent%"
+        tvTipGrade = findViewById(R.id.tvTipGrade)
+        computeTipGrade(Initial_tip_percent)
 
         seekBarTip.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 Log.i(TAG,"on Progress Changed $p1")
                 tvTipPercentLabel.text = "$p1%"
                 computeTipAndTotal()
+                computeTipGrade(p1)
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -77,6 +93,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 Log.i(TAG,"after text changed $p0")
                 computeTipAndTotal()
+
             }
 
         })
