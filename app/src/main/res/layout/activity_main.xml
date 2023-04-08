@@ -8,14 +8,15 @@
     tools:context=".MainActivity">
     <!-- Views on the left side -->
     <TextView
+
         android:id="@+id/tvBaseLabel"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_height="48dp"
         android:layout_marginTop="48dp"
         android:text="Base"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvTipPercentLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvTipPercentLabel"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -25,7 +26,8 @@
         android:layout_marginTop="48dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/tvBaseLabel"
+        app:layout_constraintEnd_toEndOf="@+id/tvTipLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvTipLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvBaseLabel"
         tools:text="25%" />
 
@@ -36,7 +38,8 @@
         android:layout_marginTop="56dp"
         android:text="Tip"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@id/tvBaseLabel"
+        app:layout_constraintEnd_toEndOf="@+id/tvTotalLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvTipPercentLabel" />
 
     <TextView
@@ -46,11 +49,22 @@
         android:layout_marginTop="48dp"
         android:text="Total"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@id/tvBaseLabel"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
 
-
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="48dp"
+        android:text="Split Bill  "
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalLabel" />
     <!--views on the right side-->
+
 
     <EditText
         android:id="@+id/etBaseAmount"
@@ -63,8 +77,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/tvBaseLabel"
         app:layout_constraintStart_toEndOf="@+id/tvBaseLabel"
-        app:layout_constraintTop_toTopOf="@id/tvBaseLabel"
-        tools:layout_editor_absoluteY="48dp" />
+        app:layout_constraintTop_toTopOf="@id/tvBaseLabel" />
 
     <SeekBar
         android:id="@+id/seekBarTip"
@@ -104,6 +117,42 @@
         app:layout_constraintStart_toStartOf="@+id/seekBarTip"
         app:layout_constraintTop_toBottomOf="@+id/seekBarTip"
         tools:text="Acceptable" />
+
+    <EditText
+        android:id="@+id/etSplitIn"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="No, of Contributors"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalAmount"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/tvContriLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Contribution/Person"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSplitIn" />
+
+    <TextView
+        android:id="@+id/tvContriAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Total"
+        app:layout_constraintEnd_toEndOf="@+id/tvContriLabel"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/tvContriLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvContriLabel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
